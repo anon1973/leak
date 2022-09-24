@@ -1,0 +1,505 @@
+game.Players:Chat("-gh 4773932088,4820152700")
+
+wait(1)
+
+for _,v in pairs(game.Players.LocalPlayer.Character.Humanoid:GetPlayingAnimationTracks()) do
+    v:Stop()
+end
+
+wait(0.03)
+
+for _,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+    if v:IsA("BasePart") or v:IsA("MeshPart") or v:IsA("Part") and v.Name ~="HumanoidRootPart" then 
+        game:GetService("RunService").Heartbeat:connect(function()
+            v.Velocity = Vector3.new(-18,0,-18)
+        end)
+    end
+    if v:IsA("Accessory") then 
+        game:GetService("RunService").Heartbeat:connect(function()
+            v.Handle.Velocity = Vector3.new(-18,0,-18)
+        end)
+    end
+end
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    game.workspace.FallenPartsDestroyHeight = 0/0
+    game:GetService("Players").LocalPlayer.ReplicationFocus = game.Players.LocalPlayer.Character
+    settings().Physics.AllowSleep = false
+    settings().Physics.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
+end)
+
+Sound0 = Instance.new("Sound")
+Sound0.Name = "SoundInstance"
+Sound0.Parent = game.Players.LocalPlayer.Character
+Sound0.Looped = true
+Sound0.Playing = true
+Sound0.SoundId = "rbxassetid://186563451"
+Sound0.Volume = 2
+
+local a = game.Players.LocalPlayer.Character["ShadowBladeMasterAccessory"].Handle
+local b = game.Players.LocalPlayer.Character["Evil Aura"].Handle
+a.AccessoryWeld:Destroy()
+b.AccessoryWeld:Destroy()
+
+spin = 1
+game:GetService("RunService").RenderStepped:Connect(function()
+	spin += 1
+end)
+
+_G.FootStepping = false
+
+local normal = game.Players.LocalPlayer.Character
+normal.Animate:Destroy()
+normal.Humanoid.Animator:Destroy()
+normal.Archivable = true
+
+local folder = Instance.new("Folder", normal)
+folder.Name = "reanim"
+
+local clone = normal:Clone()
+clone.Humanoid.DisplayDistanceType = "None"
+clone.Parent = folder
+clone.Name = "Char"
+
+for _,v in pairs(clone:GetDescendants()) do
+    if v.Name == "Shirt" or v.Name == "Pants" or v:IsA("Accessory") then
+        v:Destroy()
+    end
+end
+
+for _,v in pairs(clone.Head:GetDescendants()) do
+    if v:IsA("Decal") then
+        v:Destroy()
+    end
+end
+
+for _,v in pairs(clone:GetDescendants()) do
+    if v:IsA("BasePart") or v:IsA("MeshPart") or v:IsA("Part") then
+        v.Transparency = 1
+    end
+end
+
+game:GetService('RunService').Stepped:connect(function()
+	for i,v in next, normal:GetDescendants() do
+        if v:IsA("BasePart") and v.CanCollide == true and v.Name ~= floatName then 
+            v.CanCollide = false
+        end
+    end
+end)
+
+function align(part)
+    Character = game.Players.LocalPlayer.Character
+    Item = Character[part]
+    if part ~= "UpperTorso" and part ~= "Torso" then
+        Item:BreakJoints()
+    end
+    alignOri = Instance.new("AlignOrientation",clone[part])
+    if part == "UpperTorso" or part == "Torso" then
+        alignOri.MaxAngularVelocity = 9e9
+        alignOri.MaxTorque = 5772000
+        alignOri.PrimaryAxisOnly = false
+        alignOri.ReactionTorqueEnabled = false
+        alignOri.Responsiveness = 9e9
+        alignOri.RigidityEnabled = false
+    end
+    alignPos = Instance.new("AlignPosition",clone[part])
+    if part == "UpperTorso" or part == "Torso" then
+        alignPos.ApplyAtCenterOfMass = true
+        alignPos.MaxForce = 577200067752
+        alignPos.MaxVelocity = 9e9
+        alignPos.ReactionForceEnabled = false
+        alignPos.Responsiveness = 9e9
+        alignPos.RigidityEnabled = false
+    end
+    a1 = Instance.new("Attachment",Item)
+    a2 = Instance.new("Attachment",clone[part]) 
+    alignPos.Attachment0 = a1
+    alignPos.Attachment1 = a2
+    alignPos.Responsiveness = math.huge
+    alignPos.MaxForce = 5000003553
+    alignPos.RigidityEnabled = false
+    alignOri.Attachment0 = a1
+    alignOri.Attachment1 = a2
+    alignOri.Responsiveness = math.huge
+    alignOri.RigidityEnabled = false
+    a1.Position = Vector3.new(0,0,0) 
+    a1.Orientation = Vector3.new(0,0,0)
+end
+
+if normal.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+    align("UpperTorso") align("LeftLowerArm") align("LeftUpperArm") align("LeftHand") align("LeftLowerLeg") align("LeftUpperLeg") align("LeftFoot") align("RightLowerLeg") align("RightUpperLeg") align("RightFoot") align("RightLowerArm") align("RightUpperArm") align("RightHand")
+elseif normal.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+    align("Torso") align("Left Arm") align("Left Leg") align("Right Arm") align("Right Leg")
+end
+
+game.Players.LocalPlayer.Character = clone
+workspace.Camera.CameraSubject = clone.Humanoid
+
+local Player = game.Players.LocalPlayer
+local Character = Player.Character
+local Mouse = Player:GetMouse()
+local Humanoid = Character.Humanoid
+local UserInputService = game:GetService("UserInputService")
+local Head = Character.Head
+local UpperTorso = Character.UpperTorso
+local LowerTorso = Character.LowerTorso
+local RightUpperArm = Character.RightUpperArm
+local LeftUpperArm = Character.LeftUpperArm
+local RightLowerArm = Character.RightLowerArm
+local LeftLowerArm = Character.LeftLowerArm
+local RightHand = Character.RightHand
+local LeftHand = Character.LeftHand
+local RightUpperLeg = Character.RightUpperLeg
+local LeftUpperLeg = Character.LeftUpperLeg
+local RightLowerLeg = Character.RightLowerLeg
+local LeftLowerLeg = Character.LeftLowerLeg
+local RightFoot = Character.RightFoot
+local LeftFoot = Character.LeftFoot
+local HumanoidRootPart = Character.HumanoidRootPart
+local LeftAnkle = LeftFoot.LeftAnkle
+local LeftWrist = LeftHand.LeftWrist
+local LeftElbow = LeftLowerArm.LeftElbow
+local LeftKnee = LeftLowerLeg.LeftKnee
+local LeftShoulder = LeftUpperArm.LeftShoulder
+local LeftHip = LeftUpperLeg.LeftHip
+local Root = LowerTorso.Root
+local RightAnkle = RightFoot.RightAnkle
+local RightWrist = RightHand.RightWrist
+local RightElbow = RightLowerArm.RightElbow
+local RightKnee = RightLowerLeg.RightKnee
+local RightShoulder = RightUpperArm.RightShoulder
+local RightHip = RightUpperLeg.RightHip
+local Waist = UpperTorso.Waist
+local Neck = Head.Neck
+local LeftAnkleC0 = LeftAnkle.C0
+local LeftWristC0 = LeftWrist.C0
+local LeftElbowC0 = LeftElbow.C0
+local LeftKneeC0 = LeftKnee.C0
+local LeftShoulderC0 = LeftShoulder.C0
+local LeftHipC0 = LeftHip.C0
+local RootC0 = Root.C0
+local RightAnkleC0 = RightAnkle.C0
+local RightWristC0 = RightWrist.C0
+local RightElbowC0 = RightElbow.C0
+local RightKneeC0 = RightKnee.C0
+local RightShoulderC0 = RightShoulder.C0
+local RightHipC0 = RightHip.C0
+local WaistC0 = Waist.C0
+local NeckC0 = Neck.C0
+
+local ATTACK = false
+local Anim = "Idle"
+local idle = 0
+local equipped = false
+local sine = 0
+local change = 1
+local attack = false
+local MainModel = Instance.new("Model",Character)
+
+IT = Instance.new
+CF = CFrame.new
+VT = Vector3.new
+RAD = math.rad
+C3 = Color3.new
+UD2 = UDim2.new
+BRICKC = BrickColor.new
+ANGLES = CFrame.Angles
+EULER = CFrame.fromEulerAnglesXYZ
+COS = math.cos
+ACOS = math.acos
+SIN = math.sin
+ASIN = math.asin
+ABS = math.abs
+MRANDOM = math.random
+FLOOR = math.floor
+
+---- joints -----------------------------------------------------
+RightShoulder.C0 = CFrame.new(1.5,.5,0)
+RightShoulder.C1 = CFrame.new(0,.5,0)
+LeftShoulder.C0 = CFrame.new(-1.5,.5,0)
+LeftShoulder.C1 = CFrame.new(0,.5,0)
+
+root = CFrame.fromEulerAnglesXYZ(-1.57,0,3.14)
+necko = CFrame.new(0,1,0,-1,0,0,0,0,1,0,1,0)
+
+---- functions -----------------------------------------------------
+
+
+function swait()
+    game:GetService("RunService").Heartbeat:wait()
+end
+
+function clerp(uno,dos,tres)
+    return uno:lerp(dos,tres)
+end
+
+function rayc(po, di, ma, ig)
+    return workspace:FindPartOnRay(Ray.new(po, di.unit * (ma or 999.999)), ig)
+end
+
+function rayco(spos,direc,ignore,dist)
+    local rai = Ray.new(spos,direc.Unit * dist)
+    local rhit,rpos,rrot = workspace:FindPartOnRayWithIgnoreList(rai,ignore,false,false)
+    return rhit,rpos,rrot
+end
+
+function Raycast(POSITION, DIRECTION, RANGE, IGNOREDECENDANTS)
+    return workspace:FindPartOnRay(Ray.new(POSITION, DIRECTION.unit * RANGE), IGNOREDECENDANTS)
+end
+
+function Swait(NUMBER)
+    if NUMBER == 0 or NUMBER == nil then
+    game:GetService("RunService").Heartbeat:wait()
+else
+    for i = 1, NUMBER do
+        game:GetService("RunService").Heartbeat:wait()
+        end
+    end
+end
+
+function Clerp(a, b, t)
+    return a:lerp(b,t)
+end
+
+tele = false
+attack1 = false
+
+game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(k)
+    if k == "t" and tele == false then
+        tele = true
+        Character.HumanoidRootPart.Anchored = true
+        TelePos = CFrame.new(game.Players.LocalPlayer:GetMouse().Hit.p) * CFrame.new(0,2.5,0)
+        Character.Humanoid.WalkSpeed = 0
+        for i = 0,300,2.5 do
+        if i > 10 and i < 150 and i ~= 150 then
+        Root.C0 = clerp(Root.C0,RootC0*CFrame.new(0,0-(i/15),0)*CFrame.Angles(0,0,0),.5)
+        elseif i == 150 then
+        Character.HumanoidRootPart.Anchored = false
+        Character.HumanoidRootPart.CFrame = TelePos
+        Character.HumanoidRootPart.Anchored = true
+        --Root.C0 = clerp(Root.C0,RootC0*TelePos*CFrame.Angles(0,0,0),.5)
+        elseif i > 150 and i ~= 150 then
+        Root.C0 = clerp(Root.C0,RootC0*CFrame.new(0,(i/15)-15,0)*CFrame.Angles(0,0,0),.5)
+        end
+        LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.4,0.04,0)*CFrame.Angles(math.rad(55),math.rad(-20),math.rad(15)),.1)
+        LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(45),0,math.rad(15)),.1)
+        LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(0,0,math.rad(15)),.5)
+
+        RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.4,0.04,0)*CFrame.Angles(math.rad(55),math.rad(20),math.rad(-15)),.1)
+        RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(45),0,math.rad(-15)),.1)
+        RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(0,0,math.rad(-15)),.5)
+        a.CFrame = game.Players.LocalPlayer.Character.UpperTorso.CFrame * CFrame.new(0,-2.35,-1.2) * CFrame.Angles(0,0,math.rad(48))
+        swait()
+        end
+        Character.HumanoidRootPart.Anchored = false
+        Character.Humanoid.WalkSpeed = 35
+        tele = false
+    end
+end)
+
+game.Players.LocalPlayer:GetMouse().KeyDown:connect(function(k)
+    if k == "r" and attack1 == false then
+        attack1 = true
+        for i = 0,180,2.5 do
+        LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.4,0.04,0)*CFrame.Angles(math.rad((i/2)+25),0,0),.1)
+        LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(i/4),0,0),.1)
+        LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(math.rad(i/5),0,0),.5)
+
+        RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(math.rad(15),math.rad(15)+math.sin(sine/120)/9,math.rad(12)),.5)
+        RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,math.sin(sine/120)/15,0),.5)
+        RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+        a.CFrame = LeftHand.CFrame * CFrame.new(0,(-i/15)-2,0) * CFrame.Angles(0,math.rad(i/2),math.rad(48))
+        swait()
+        end
+        for i = 0,35 do
+        LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.4,0.04,0)*CFrame.Angles(math.rad(130),0,0),.1)
+        LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(45),0,0),.1)
+        LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(math.rad(36),0,0),.5)
+
+        RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(math.rad(15),math.rad(15)+math.sin(sine/120)/9,math.rad(12)),.5)
+        RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,math.sin(sine/120)/15,0),.5)
+        RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+        a.CFrame = LeftHand.CFrame * CFrame.new(0,-14,0) * CFrame.Angles(0,math.rad(90),math.rad(48))
+        swait()
+        end
+        for i = 0,180,15 do
+        LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.4,0.04,0)*CFrame.Angles(math.rad(130-(i/2)),0,0),.1)
+        LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(45-(i/4)),0,0),.1)
+        LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(math.rad(36-(i/5)),0,0),.5)
+
+        RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(math.rad(15),math.rad(15)+math.sin(sine/120)/9,math.rad(12)),.5)
+        RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,math.sin(sine/120)/15,0),.5)
+        RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+        a.CFrame = LeftHand.CFrame * CFrame.new(0,-14,0) * CFrame.Angles(0,math.rad(90),math.rad(48))
+        swait()
+        end
+        for i = 180,185 do
+        LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.4,0.04,0)*CFrame.Angles(math.rad(130-(i/2)),0,0),.1)
+        LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,-0.15,0)*CFrame.Angles(math.rad(45-(i/4)),0,0),.1)
+        LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,-0.05,0)*CFrame.Angles(math.rad(36-(i/5)),0,0),.5)
+
+        RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(math.rad(15),math.rad(15)+math.sin(sine/120)/9,math.rad(12)),.5)
+        RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,math.sin(sine/120)/15,0),.5)
+        RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+        a.CFrame = LeftHand.CFrame * CFrame.new(0,-14,0) * CFrame.Angles(0,math.rad(90),math.rad(48))
+        swait()
+        end
+        attack1 = false
+    end
+end)
+
+Character.Humanoid.WalkSpeed = 35
+---- animations ---------------------------------------------------------------
+local CF = {N=CFrame.new,A=CFrame.Angles}
+local M = {R=math.rad,C=math.cos,S=math.sin}
+local V3 = {N=Vector3.new,FNI=Vector3.FromNormalId,A=Vector3.FromAxis}
+local movement = 10
+
+while true do
+    swait()
+    if tele == false and attack1 == false then
+        a.CFrame = game.Players.LocalPlayer.Character.UpperTorso.CFrame * CFrame.new(2.1,-0.5+math.sin(sine/100)/4,0.9) * CFrame.Angles(0,math.sin(sine/86.6)/6,math.rad(40))
+    end
+        
+    b.CFrame = game.Players.LocalPlayer.Character.Head.CFrame * CFrame.new(-0.4+math.sin(sine/100)/2,math.sin(sine/100)/2-0.2,1) * CFrame.Angles(0,0,math.rad(spin))
+                
+    sine = sine + change
+    local torvel = (HumanoidRootPart.Velocity * Vector3.new(1, 0, 1)).magnitude
+    local velderp = HumanoidRootPart.Velocity.y
+    local hit,pos,rot = rayco(HumanoidRootPart.Position -Vector3.new(0,1,0),-HumanoidRootPart.CFrame.UpVector,{Character},2.7)
+    phit = hit
+    
+    if not hit and Anim == "Fall" then
+        readytoland = true
+    end
+    
+    if not landed then
+        if readytoland and hit then
+            land()
+        end
+    end
+    local lhit,lpos = workspace:FindPartOnRayWithIgnoreList(Ray.new(LeftLowerLeg.CFrame.p,((CFrame.new(LeftLowerLeg.Position,LeftLowerLeg.Position - Vector3.new(0,1,0))).lookVector).unit * (2)), {Effects,Character})
+    local rhit,rpos = workspace:FindPartOnRayWithIgnoreList(Ray.new(RightLowerLeg.CFrame.p,((CFrame.new(RightLowerLeg.Position,RightLowerLeg.Position - Vector3.new(0,1,0))).lookVector).unit * (2)), {Effects,Character})
+    hitfloor, posfloor = rayc(HumanoidRootPart.Position, CFrame.new(HumanoidRootPart.Position, HumanoidRootPart.Position - Vector3.new(0, 1, 0)).lookVector, 4, Character)
+    if equipped == true or equipped == false then
+
+        if attack == false then
+            idle = idle + 1
+        else
+            idle = 0
+        end
+        if HumanoidRootPart.Velocity.y > 1 and hitfloor == nil then
+            Anim = "Jump"
+            if attack == false then
+                local idk = math.min(math.max(HumanoidRootPart.Velocity.Y/50,-M.R(90)),M.R(90))
+                b.CFrame = game.Players.LocalPlayer.Character.Head.CFrame * CFrame.new(-0.4+math.sin(sine/100)/2,math.sin(sine/100)/2-0.2,1) * CFrame.Angles(0,0,math.rad(spin))
+                
+                Root.C0 = clerp(Root.C0,RootC0*CF.A(math.min(math.max(HumanoidRootPart.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.1)
+                Neck.C0 = clerp(Neck.C0,NeckC0*CF.A(math.min(math.max(HumanoidRootPart.Velocity.Y/100,-M.R(45)),M.R(45)),0,0),.1)
+                Waist.C0 = clerp(Waist.C0,WaistC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+
+                LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CF.A(M.R(-5),0,M.R(-90)),.1)
+                LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CF.N(0,0,0)*CF.A(M.R(0),M.R(0),M.R(-10)),.1)
+                LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CF.N(0,0,0)*CF.A(M.R(0),M.R(0),M.R(-5)),.1)
+                
+                RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CF.A(M.R(-5),0,M.R(90)),.1)
+                RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CF.N(0,0,0)*CF.A(M.R(0),M.R(0),M.R(10)),.1)
+                RightWrist.C0 = clerp(RightWrist.C0,RightWristC0*CF.N(0,0,0)*CF.A(M.R(0),M.R(0),M.R(5)),.1)
+                
+                LeftHip.C0 =(LeftHipC0*CF.A(0,0,M.R(-5)))
+                LeftAnkle.C0 =(LeftAnkleC0*CF.N(0,0,0))
+                LeftKnee.C0 =(LeftKneeC0*CF.N(0,0,0)*CF.A(M.R(-10),0,0))
+                
+                RightHip.C0 =(RightHipC0*CF.N(0,1,-.5)*CF.A(M.R(-5),0,M.R(5)))
+                RightAnkle.C0 =(RightAnkleC0*CF.N(0,0,0))
+                RightKnee.C0 =(RightKneeC0*CF.N(0,0,0)*CF.A(M.R(-30),0,0))
+            end
+        elseif torvel < 1 and hitfloor ~= nil then
+            Anim = "Idle"
+            if attack == false then
+                b.CFrame = game.Players.LocalPlayer.Character.Head.CFrame * CFrame.new(-0.4+math.sin(sine/100)/2,math.sin(sine/100)/2-0.2,1) * CFrame.Angles(0,0,math.rad(spin))
+                --a.CFrame = game.Players.LocalPlayer.Character.Head.CFrame * CFrame.new(1,1+math.sin(sine/100)/4,1.3) * CFrame.Angles(math.rad(180)+math.sin(sine/100)/4,math.rad(150)+math.sin(sine/86.6)/6,math.rad(180))
+                if tele == false then
+                Root.C0 = clerp(Root.C0,RootC0*CFrame.new(0,2+math.sin(sine/60)/4,0)*CFrame.Angles(0,math.sin(sine/120)/6,0),.5)
+                end
+                Waist.C0 = clerp(Waist.C0,WaistC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                Neck.C0 = clerp(Neck.C0,NeckC0*CFrame.Angles(0,0,0),.5)
+                
+                if tele == false and attack1 == false then
+                LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.5,0.04,0)*CFrame.Angles(0,math.rad(-15)+math.sin(sine/120)/9,math.rad(-10)),.5)
+                LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,-math.sin(sine/120)/15,0),.5)
+                LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+
+                RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(0,math.rad(15)+math.sin(sine/120)/9,math.rad(12)),.5)
+                RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(15)+math.sin(sine/120)/5,math.sin(sine/120)/15,0),.5)
+                RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                end
+
+                LeftHip.C0 = Clerp(LeftHip.C0,LeftHipC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(20)+math.sin(sine/120)/9,math.rad(5),math.rad(-5)),.5)
+                LeftAnkle.C0 = Clerp(LeftAnkle.C0,LeftAnkleC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                LeftKnee.C0 = Clerp(LeftKnee.C0,LeftKneeC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-35)+math.sin(sine/120)/8,0,0),.5)
+
+                RightHip.C0 = Clerp(RightHip.C0,RightHipC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(10)+math.sin(sine/120)/15,math.rad(15),0),.5)
+                RightAnkle.C0 = Clerp(RightAnkle.C0,RightAnkleC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                RightKnee.C0 = Clerp(RightKnee.C0,RightKneeC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-35)+math.sin(sine/120)/15,0,0),.5)
+            end
+        elseif torvel > 2 and torvel < 45 and hitfloor ~= nil then
+            Anim = "Walk"
+            local Testwalk1 = Humanoid.MoveDirection*LowerTorso.CFrame.LookVector
+            local Testwalk2 = Humanoid.MoveDirection*LowerTorso.CFrame.RightVector
+            LOOKVEC = Testwalk1.X+Testwalk1.Z
+            RIGHTVEC = Testwalk2.X+Testwalk2.Z
+            if attack == false then
+                local wsVal = 20
+                local torsomove = movement --10
+                local armsmove = movement*2 --10
+                local leglift = movement*3 --30
+                local legturn =movement*4 --40
+                local legwalk = movement*2.5 --25
+                local Walktest1 = Humanoid.MoveDirection*LowerTorso.CFrame.LookVector
+                local Walktest2 = Humanoid.MoveDirection*LowerTorso.CFrame.RightVector
+                forWFB = Walktest1.X+Walktest1.Z
+                forWRL = Walktest2.X+Walktest2.Z
+
+                b.CFrame = game.Players.LocalPlayer.Character.Head.CFrame * CFrame.new(-0.4+math.sin(sine/100)/2,math.sin(sine/100)/2-0.2,1) * CFrame.Angles(0,0,math.rad(spin))
+                
+                Root.C0 = clerp(Root.C0,RootC0*CFrame.new(0,2+math.sin(sine/60)/4,0)*CFrame.Angles(math.rad(-30),0,0),.5)
+                Waist.C0 = clerp(Waist.C0,WaistC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                Neck.C0 = clerp(Neck.C0,NeckC0*CFrame.Angles(0,0,0),.5)
+
+                if attack1 == false then
+                LeftShoulder.C0 = clerp(LeftShoulder.C0,LeftShoulderC0*CFrame.new(-0.5,0.04,0)*CFrame.Angles(math.rad(-20)+math.sin(sine/78)/6,math.rad(-10)-math.sin(sine/54)/7,math.rad(-5)-math.sin(sine/54)/16),.5)
+                LeftElbow.C0 = clerp(LeftElbow.C0,LeftElbowC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                LeftWrist.C0 = clerp(LeftWrist.C0,LeftWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+
+                RightShoulder.C0 = clerp(RightShoulder.C0,RightShoulderC0*CFrame.new(0.5,0.04,0)*CFrame.Angles(math.rad(-20)+math.sin(sine/78)/6,math.rad(10)+math.sin(sine/54)/7,math.rad(5)+math.sin(sine/54)/16),.5)
+                RightElbow.C0 = clerp(RightElbow.C0,RightElbowC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                RightWrist.C0 =clerp(RightWrist.C0,RightWristC0*CFrame.new(0,0,0)*CFrame.Angles(0,0,0),.5)
+                end
+
+                if _G.FootStepping == true then
+                    RightHip.C0 = clerp(RightHip.C0,RightHipC0*CF.N(-0.1*forWRL*math.sin(sine/4),0,0.1*forWFB*math.sin(sine/4))*CF.A(math.rad(((-forWRL*(leglift/4))*math.sin(sine/8))+((leglift/2)-(leglift/2)*math.cos(sine/8))+(-forWFB*legwalk)*math.sin(sine/8)),math.rad((legturn/6)*math.cos(sine/8)),math.rad(((-forWRL*legwalk)*math.sin(sine/8))+forWRL*0)),.5)
+                    RightKnee.C0 = Clerp(RightKnee.C0,RightKneeC0*CF.N(0,0,0)*CF.A(math.rad( -leglift+(1*leglift)*math.cos(sine/8)),math.rad(0),math.rad(forWRL*0)),.5)
+                    RightAnkle.C0 = clerp(RightAnkle.C0,RightAnkleC0*CF.N(0,0,0)*CF.A(math.rad((leglift/4)*math.cos(sine/8)  ),math.rad(0),math.rad(-(forWRL*10)*math.cos(sine/8))),.5)
+
+                    LeftHip.C0 = Clerp(LeftHip.C0,LeftHipC0*CF.N(0.1*forWRL*math.sin(sine/4),0,-0.1*forWFB*math.sin(sine/8))*CF.A(math.rad(((forWRL*(leglift/4))*math.sin(sine/8))+((leglift/2)+(leglift/2)*math.cos(sine/8))-(-forWFB*legwalk)*math.sin(sine/8)),math.rad((legturn/6)*math.cos(sine/8)),math.rad((-(-forWRL*legwalk)*math.sin(sine/8) )+forWRL*0)),.5)
+                    LeftKnee.C0 = clerp(LeftKnee.C0,LeftKneeC0*CF.N(0,0,0)*CF.A(math.rad( -leglift-(1*leglift)*math.cos(sine/8)),math.rad(0),math.rad(forWRL*0)),.5)
+                    LeftAnkle.C0 = clerp(LeftAnkle.C0,LeftAnkleC0*CF.N(0,0,0)*CF.A(math.rad(-(leglift/4)*math.cos(sine/8)),math.rad(0),math.rad((forWRL*10)*math.cos(sine/8))),.5)
+                else
+                    LeftHip.C0 = Clerp(LeftHip.C0,LeftHipC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-15),math.rad(10),math.rad(-7)),.5)
+                    LeftAnkle.C0 = Clerp(LeftAnkle.C0,LeftAnkleC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-5),0,0),.5)
+                    LeftKnee.C0 = Clerp(LeftKnee.C0,LeftKneeC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-20),0,0),.5)
+
+                    RightHip.C0 = Clerp(RightHip.C0,RightHipC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-15),math.rad(-10),math.rad(7)),.5)
+                    RightAnkle.C0 = Clerp(RightAnkle.C0,RightAnkleC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-5),0,0),.5)
+                    RightKnee.C0 = Clerp(RightKnee.C0,RightKneeC0*CFrame.new(0,0,0)*CFrame.Angles(math.rad(-20),0,0),.5)
+                end
+            end
+        elseif torvel >= 45 and hitfloor ~= nil then
+            Anim = "Run"
+            if attack == false then
+                
+            end
+        end
+    end
+end

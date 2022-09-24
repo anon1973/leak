@@ -1,0 +1,139 @@
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local Heartbeat = game:GetService("RunService").Heartbeat
+
+Heartbeat:Connect(function()
+    LocalPlayer.MaximumSimulationRadius = math.huge
+    sethiddenproperty(LocalPlayer, "SimulationRadius", math.huge)
+end)
+
+wait(0.2)
+
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+    if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+    game:GetService("RunService").Heartbeat:connect(function()
+    v.Velocity = Vector3.new(-30,0,0)
+    end)
+    end
+    end
+    
+wait(0.2)
+
+
+local character = game.Players.LocalPlayer.Character
+local tools = {}
+for i, v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") 
+        then v.Parent = character
+        table.insert(tools,v)
+    end
+end
+wait()
+for i, v in pairs(tools) do
+    v.Parent = game.Players.LocalPlayer.Backpack
+end   
+ wait(0.1)
+ 
+print("GOOD.")
+
+game:GetService("Players").LocalPlayer.Character["MeshPartAccessory"].Name = "BALL1"
+game:GetService("Players").LocalPlayer.Character["MeshPartAccessory"].Name = "BALL2"
+
+local tangerex = loadstring(game:HttpGet("https://paste.ee/r/QTVPz"))()
+
+reanimate = tangerex:Reanimate("SP",false --[[Usage: true or false to toggle click fling]]) -- SP / Simple, LF / Leg Fling, TF / Torso Fling, PD / Perma Death [Fling]
+
+reanimate:Animation("idle",function()
+--idlelerphere
+RH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+LH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+NECK.C0=NECK.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),90+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RJ.C0=RJ.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),-5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RS.C0=RS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),7+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LS.C0=LS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),5.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RH.C0=RH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),4.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LH.C0=LH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),3+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+reanimate:Hat("BALL1","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(-90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+reanimate:Hat("BALL2","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+
+end)
+
+reanimate:Animation("walk",function()
+--walklerphere
+RH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+LH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+NECK.C0=NECK.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),90+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RJ.C0=RJ.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),-5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RS.C0=RS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),7+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LS.C0=LS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),5.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RH.C0=RH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),4.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LH.C0=LH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),3+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+reanimate:Hat("BALL1","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(-90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+reanimate:Hat("BALL2","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+
+end)
+
+reanimate:Animation("run",function()
+--runlerphere
+RH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+LH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+NECK.C0=NECK.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),90+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RJ.C0=RJ.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),-5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RS.C0=RS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),7+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LS.C0=LS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),5.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RH.C0=RH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),4.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LH.C0=LH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),3+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+reanimate:Hat("BALL1","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(-90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+reanimate:Hat("BALL2","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+
+end)
+
+reanimate:Animation("jump",function()
+--jumplerphere
+RH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+LH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+NECK.C0=NECK.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),90+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RJ.C0=RJ.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),-5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RS.C0=RS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),7+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LS.C0=LS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),5.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RH.C0=RH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),4.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LH.C0=LH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),3+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+reanimate:Hat("BALL1","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(-90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+reanimate:Hat("BALL2","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+
+end)
+
+reanimate:Animation("fall",function()
+--falllerphere
+RH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+LH.Part0 = workspace.Camera.CameraSubject.Parent.Torso
+NECK.C0=NECK.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),90+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RJ.C0=RJ.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),-5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RS.C0=RS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),7+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LS.C0=LS.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),5.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+RH.C0=RH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),4.5+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5) 
+LH.C0=LH.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),3+0*math.cos(sine/10),0+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+reanimate:Hat("BALL1","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL1"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(-90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+reanimate:Hat("BALL2","Left Leg",false,function()
+workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0=workspace.Camera.CameraSubject.Parent["BALL2"].Handle.AccessoryWeld.C0:Lerp(CFrame.new(0+0*math.cos(sine/10),0.5+0*math.cos(sine/10),-0.5+0*math.cos(sine/10))*CFrame.Angles(math.rad(0+0*math.cos(sine/10)),math.rad(90+0*math.cos(sine/10)),math.rad(0+0*math.cos(sine/10))),0.5)
+end)
+
+end)
+

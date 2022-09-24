@@ -1,0 +1,616 @@
+game.Players.LocalPlayer.Character["Necklace"].Handle.Mesh:Destroy()
+game.TestService.IsSleepAllowed = false
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+	if v:IsA("BasePart") then 
+		game:GetService("RunService").Heartbeat:connect(function()
+			v.Velocity = Vector3.new(-40,0,-10)
+			pcall(function()
+				v.CanCollide = false
+			end)
+			pcall(function()
+				v.CanQuery = false
+			end)
+		end)
+	end
+end
+
+Bypass = "death"
+loadstring(game:GetObjects("rbxassetid://5325226148")[1].Source)()
+local IsDead = false
+local StateMover = true
+local playerss = workspace.non
+local bbv,bullet
+if Bypass == "death" then
+	bullet = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+	bullet.Color = Color3.new()
+	bullet.Transparency = .75
+	bullet.Material = "Neon"
+	bullet.Massless = true
+
+	local Sphere = game:GetObjects("rbxassetid://9418986037")[1]
+	Sphere.Parent = nil
+	Sphere.Adornee = nil
+	Sphere.Color3 = Color3.fromRGB(0,0,0)
+	Sphere.Radius = .5
+	if bullet:FindFirstChildOfClass("Attachment") then
+		for _,v in pairs(bullet:GetChildren()) do
+			if v:IsA("Attachment") then
+				v:Destroy()
+			end
+		end
+	end
+
+	bbv = Instance.new("BodyPosition",bullet)
+	bbv.Position = playerss.Torso.CFrame.p
+end
+
+if Bypass == "death" then
+	coroutine.wrap(function()
+		while true do
+			if not playerss or not playerss:FindFirstChildOfClass("Humanoid") or playerss:FindFirstChildOfClass("Humanoid").Health <= 0 then IsDead = true; return end
+			if StateMover then
+				bbv.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+				bullet.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+			end
+			game:GetService("RunService").RenderStepped:wait()
+		end
+	end)()
+end
+
+local CDDF = {}
+
+
+for i,v in next, playerss:GetDescendants() do
+	if v:IsA("BasePart") then 
+		game:GetService("RunService").Heartbeat:connect(function()
+			pcall(function()
+				v.CanCollide = false
+			end)
+			pcall(function()
+				v.CanQuery = false
+			end)
+		end)
+	end
+end
+
+local dammf = workspace.non:FindFirstChildOfClass("Humanoid")
+dammf.RequiresNeck = false
+dammf.BreakJointsOnDeath = false
+for stupidfucking, omfg in pairs(workspace.non:GetChildren()) do
+	if omfg:IsA("BasePart") then
+		omfg.Anchored = true
+		omfg.Velocity = Vector3.new(0, 0, 0)
+		omfg.Transparency = 1
+		for stupidfucking, omfg in pairs(omfg:GetChildren()) do
+			if omfg:IsA("Motor6D") then
+				omfg.Part0 = nil
+			end
+		end
+	end
+end
+
+
+script = game:GetObjects("rbxassetid://7358490432")[1]
+script = script:FindFirstChildOfClass("Script")
+script = script.Client["vitamin gummies"]
+local ts,run,workspace = game:GetService("TweenService"),game:GetService("RunService"),game:GetService("Workspace")
+local cn,euler,rad,v3,sin,cos,random = CFrame.new,CFrame.fromEulerAnglesYXZ,math.rad,Vector3.new,math.sin,math.cos,math.random
+local size = 1
+function cn2(x,y,z)
+	return cn(v3(x,y,z)*size)
+end
+function randomstring()
+	local e = {}
+	for i = 1,math.random(5,50) do
+		table.insert(e,#e+1,utf8.char(math.random(10,100)))
+	end
+	return table.concat(e)
+end
+function debris(instance,delay)
+	game:GetService("Debris"):AddItem(instance,delay)
+end
+function tween(instance,properties,duration,easingdirection,easingstyle)
+	spawn(function()
+		if easingstyle == nil then easingstyle = Enum.EasingStyle.Quad end
+		ts:Create(instance,TweenInfo.new(duration,easingstyle,easingdirection),properties):Play()
+	end)
+end
+function change(instance,properties)
+	pcall(function()
+		for property, value in pairs(properties) do
+			instance[property] = value
+		end
+	end)
+end
+function create(class,properties)
+	local instance = Instance.new(class)
+	change(instance,properties)
+	return instance
+end
+
+ArtificialHB = Instance.new("BindableEvent", script)
+ArtificialHB.Name = "ArtificialHB"
+script:WaitForChild("ArtificialHB")
+frame = 1/60
+tf = 0
+allowframeloss = false
+tossremainder = false
+lastframe = tick()
+script.ArtificialHB:Fire()
+game:GetService("RunService").Heartbeat:connect(function(s, p)
+	tf = tf + s
+	if tf >= frame then
+		if allowframeloss then
+			script.ArtificialHB:Fire()
+			lastframe = tick()
+		else
+			for i = 1, math.floor(tf / frame) do
+				script.ArtificialHB:Fire()
+			end
+			lastframe = tick()
+		end
+		if tossremainder then
+			tf = 0
+		else
+			tf = tf - frame * math.floor(tf / frame)
+		end
+	end
+end)
+
+function wait2(n)
+	if n == 0 or n == nil then
+		ArtificialHB.Event:wait()
+	else
+		for i = 1, n do
+			ArtificialHB.Event:wait()
+		end
+	end
+end
+
+
+
+function raycast(origin, direction, range, ignore)
+	return workspace:FindPartOnRay(Ray.new(origin, direction*range), ignore)
+end
+local terrain = workspace:FindFirstChildWhichIsA("Terrain")
+wait2(0.2)
+local plr,localplayer,materials,shapes = game:GetService("Players").LocalPlayer,game:GetService("Players").LocalPlayer,Enum.Material:GetEnumItems(),Enum.PartType:GetEnumItems()
+local mouse,cam,truehum = localplayer:GetMouse(),workspace.CurrentCamera,localplayer.Character:FindFirstChildOfClass("Humanoid") or localplayer.Character:WaitForChild("Humanoid")
+local event = {}
+local OnClientEvent = false
+function event:FireServer(...)
+	if OnClientEvent then OnClientEvent(...) end
+end
+local hc0,lac0,rac0,llc0,rlc0,sine,animspeed,attack,falling,partexclusion,flying = cn2(0,1.5,0),cn2(-1.5,0,0),cn2(1.5,0,0),cn2(-0.5,-2,0),cn2(0.5,-2,0),0,1/4,false,false,{},false
+local hoffset,toffset,laoffset,raoffset,lloffset,rloffset = hc0,cn(),lac0,rac0,llc0,rlc0
+local h,t,la,ra,ll,rl,r,poscframe,ypos,moving,keys = playerss.Head,playerss.Torso,playerss["Left Arm"],playerss["Right Arm"],playerss["Left Leg"],playerss["Right Leg"],playerss.HumanoidRootPart,cn(),50,false,{w=false,a=false,s=false,d=false}
+--r.face:Destroy()
+--h.Parent,t.Parent,la.Parent,ra.Parent,ll.Parent,rl.Parent,r.Transparency = cam,cam,cam,cam,cam,cam,0.5
+--h.Name,t.Name,la.Name,ra.Name,ll.Name,rl.Name = randomstring(),randomstring(),randomstring(),randomstring(),randomstring(),randomstring()
+
+function resetchr()
+	if localplayer == plr then
+		for i, v in pairs(workspace:GetDescendants()) do
+			if v:IsA("SpawnLocation") then
+				local newpos = v.CFrame*cn(0,v.Size.Y/2+50,0)
+				ypos = newpos.Y
+				poscframe = v.CFrame*cn(0,v.Size.Y/2+50,0)
+				return
+			end
+		end
+		ypos = 50
+		poscframe = cn(0,ypos,0)
+	end
+end
+local bgm = create("Sound",{Parent=cam})
+local bgmstarttime = tick()
+cam.ChildRemoved:Connect(function(instance)
+	if instance == bgm then
+		local bgmchanged,bgmended,fixing = nil,nil,false
+		bgm = create("Sound",{Parent = cam})
+		bgmchanged = bgm.Changed:Connect(function(thing)
+			if thing == "Volume" then return end
+			if bgm.Parent == nil then bgmchanged:Disconnect() bgmended:Disconnect() return end
+			if fixing then return end
+			fixing = true
+			bgm.SoundId = "rbxassetid://4636390363"
+			bgm.Looped = true
+			bgm.Pitch = 1
+			bgm.Playing = true
+			bgm.RollOffMaxDistance = 10000
+			bgm.RollOffMinDistance = 10
+			bgm.RollOffMode = Enum.RollOffMode.Inverse
+			bgm.SoundGroup = nil
+			bgm.Name = randomstring()
+			if bgm.TimePosition ~= math.clamp(bgm.TimePosition,tick()-bgmstarttime-0.2,tick()-bgmstarttime+0.2) then
+				bgm.TimePosition = tick()-bgmstarttime
+			end
+			fixing = false
+		end)
+		bgmended = bgm.Ended:Connect(function()
+			bgmstarttime = tick()
+			bgm.Name = "hi"
+		end)
+		bgm.Name = "hi"
+	end
+end)
+bgm:Destroy()
+local rotationvalue = Instance.new("CFrameValue",script)
+rotationvalue.Name = randomstring()
+local uis = game:GetService("UserInputService")
+
+local function AlignHat(p1,p2,nomesh)
+	pcall(function()
+		p1:FindFirstChildOfClass("Weld"):Destroy()
+		if nomesh then 
+			p1:FindFirstChildOfClass("SpecialMesh"):Destroy()
+		end
+	end)
+	--p1.AccessoryWeld:Destroy()
+	A1 = Instance.new("Attachment", p1) 
+	A2 = Instance.new("Attachment", p2)
+	Mover = Instance.new("AlignPosition", p1)
+	Mover.RigidityEnabled = false
+	Mover.Attachment0 = A1
+	Mover.Attachment1 = A2
+	Mover.Responsiveness = 200
+	Mover.MaxVelocity = math.huge
+	Mover.MaxForce = math.huge
+	Rotater = Instance.new("AlignOrientation", p1)
+	Rotater.RigidityEnabled = false
+	Rotater.Attachment0 = A1
+	Rotater.Attachment1 = A2
+	Rotater.Responsiveness = 200
+	Rotater.MaxAngularVelocity = math.huge
+	Rotater.MaxTorque = math.huge
+end
+
+local variablerandom = false
+run:BindToRenderStep(plr.Name.."'s idk thing loeleolllllaaaaaaaaaa",600,function()
+	sine = sine + 1
+	if localplayer == plr then
+		if not flying then
+			local hit, hitpos = raycast(t.Position,cn(t.Position,t.Position-v3(0,1,0)).LookVector,9e18,cam)
+			if hit then
+				ypos = cn(0,ypos,0):Lerp(cn(0,hitpos.Y+7,0),0.05).Y
+			else
+				ypos = ypos - 3
+				if ypos < workspace.FallenPartsDestroyHeight then
+					resetchr()
+				end
+			end
+		end
+		local movedirection,pos,lv = v3(),poscframe.p,cam.CFrame.LookVector
+		if keys.w then movedirection = movedirection + v3(0,0,-1) end
+		if keys.a then movedirection = movedirection + v3(-1,0,0) end
+		if keys.s then movedirection = movedirection + v3(0,0,1) end
+		if keys.d then movedirection = movedirection + v3(1,0,0) end
+
+		moving = movedirection ~= v3()
+		local xrot,yrot,zrot = cn(poscframe.p,Vector3.new(poscframe.X+lv.X,poscframe.Y,poscframe.Z+lv.Z)):ToOrientation()
+		if flying then
+			
+			poscframe = cn(poscframe.p,poscframe.p+cam.CFrame.LookVector)
+			poscframe = poscframe * cn(movedirection/2)
+			ypos = poscframe.p.Y
+		else
+			--poscframe = cn(v3(e.X,ypos,e.Z)+truehum.MoveDirection/3) * euler(0,rad(rotation),0)
+			local moveto = (cn(pos.X,ypos,pos.Z) * euler(0,rad(math.deg(yrot)),0) * cn(movedirection/3)).p
+			if uis.MouseBehavior == Enum.MouseBehavior.LockCenter then
+				rotationvalue.Value = euler(0,rad(math.deg(yrot)),0)
+			else
+				if movedirection ~= v3() then
+					local z = ts:Create(rotationvalue,TweenInfo.new(0.1,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Value=cn(v3(pos.X,ypos,pos.Z),moveto)})
+					z:Play()
+					delay(1/60,function()
+						z:Cancel()
+					end)
+				end
+			end
+			local xrot2,yrot2,zrot2 = rotationvalue.Value:ToOrientation()
+			poscframe = cn(moveto) * euler(0,rad(math.deg(yrot2)),0)
+		end
+		r.CFrame = poscframe
+		event:FireServer("replicate",{poscframe,moving})
+		
+	end
+	if not attack then
+		if moving then
+			laoffset = laoffset:Lerp(lac0*cn2(1.00899887,0.371999979,-0.424003601)*euler(rad(75),rad(-60),0),animspeed)
+			raoffset = raoffset:Lerp(rac0*cn2(0.241001129,0.16899991,0.255996704)*euler(0,rad(-15),rad(75)),animspeed)
+			lloffset = lloffset:Lerp(llc0,animspeed)
+			rloffset = rloffset:Lerp(rlc0*cn2(0,0.541000009,-0.31199646)*euler(rad(-30),0,0),animspeed)
+			toffset = toffset:Lerp(cn2(0,sin(sine/16)*1.5,0)*euler(rad(-50),0,0),animspeed)
+			hoffset = hoffset:Lerp(cn2(0,1,0)*euler(rad(50),0,0)*cn2(0,0.5,0),animspeed)
+		else
+			laoffset = laoffset:Lerp(lac0*cn2(-0.5,0.5,cos(sine/16)/5)*euler(0,rad(cos(sine/16)*15),rad(-90)),animspeed)
+			raoffset = raoffset:Lerp(rac0*cn2(0.171001434,0.220999956-cos(sine/16)/3,-0.624000549)*euler(rad(75-cos(sine/16)*15),0,rad(30)),animspeed)
+			lloffset = lloffset:Lerp(llc0*cn2(0,0,cos(sine/16)/2.5)*euler(rad(-cos(sine/16)*25),0,0),animspeed)
+			rloffset = rloffset:Lerp(rlc0*cn2(0,0.541000009,-0.31199646+cos(sine/16)/2.5)*euler(rad(-30-cos(sine/16)*25),0,0),animspeed)
+			toffset = toffset:Lerp(cn2(0,sin(sine/16)*1.5,0)*euler(rad(30-cos(sine/16)*15),0,0),animspeed)
+			hoffset = hoffset:Lerp(cn2(0,1,0)*euler(rad(cos(sine/18)*15),0,rad(sin(sine/36)*12.5))*cn2(0,0.5,0),animspeed)
+		end
+	end
+	t.CFrame = r.CFrame * toffset
+	h.CFrame,la.CFrame,ra.CFrame,ll.CFrame,rl.CFrame = t.CFrame*hoffset,t.CFrame*laoffset,t.CFrame*raoffset,t.CFrame*lloffset,t.CFrame*rloffset
+	
+
+	
+	
+	--Railn.Attachment.CFrame = CFrame.new(-1.29999995, 0.200000003, 0, -4.37113883e-08, 0.707106829, -0.707106829, 0, 0.707106829, 0.707106829, 1, 3.09086232e-08, -3.09086197e-08)
+ 
+
+	bgm.Volume = math.clamp(50/(t.Position-cam.CFrame.p).Magnitude/10,0,1)
+end)
+
+local orb1 = create("Part",{
+	Parent = cam,
+	Anchored = true,
+	CanCollide = false,
+	Material = materials[random(1,#materials)],
+	BrickColor = BrickColor.Random(),
+	Size = v3(0.5,0.5,0.5),
+	CFrame = ra.CFrame * cn2(0,-1.75,0) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+})
+local dur = random(10,75)/300
+local size1 = random(10,40)/25
+
+
+
+
+local orb2 = create("Part",{
+	Parent = cam,
+	Anchored = true,
+	CanCollide = false,
+	Material = materials[random(1,#materials)],
+	BrickColor = BrickColor.Random(),
+	Shape = shapes[random(1,#shapes)],
+	Transparency = 0.5,
+	Size = v3(0.5,0.5,0.5),
+	CFrame = ra.CFrame * cn2(0,-1.75,0) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+})
+table.insert(partexclusion,orb1)
+table.insert(partexclusion,orb2)
+
+run:BindToRenderStep(plr.Name.."'xddd",600,function()
+	wait2()
+
+	tween(orb1,{Size=v3(size1,size1,size1),Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360))},dur,Enum.EasingDirection.Out)
+	orb1.CFrame = ra.CFrame * cn2(0,-1.75,0) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+	--print("A")
+	tween(orb2,{Size=v3(size1*2.5,size1*2.5,size1*2.5),Transparency=1,Orientation=v3(random(0,360),random(0,360),random(0,360))},dur/2,Enum.EasingDirection.Out)
+	orb2.CFrame = ra.CFrame * cn2(0,-1.75,0) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+end)
+
+pcall(function()
+local Fire = workspace.non["Necklace"].Handle
+AlignHat(Fire,orb1,false)
+end)
+
+local DamageFling = function(DmgPer)
+	if IsDead or Bypass ~= "death" then return end
+	CDDF[DmgPer] = true; StateMover = false
+	orb1.Attachment.Parent = bullet
+	bbav = Instance.new("BodyAngularVelocity",bullet)
+	bbav.MaxTorque = Vector3.new(math.huge,math.huge,math.huge)
+	bbav.P = 1000000000000000000000000000
+	bbav.AngularVelocity = Vector3.new(10000000000000000000000000000000,100000000000000000000000000,100000000000000000)
+	game:GetService("Debris"):AddItem(bbav,0.1)
+	bullet.Rotation = playerss.Torso.Rotation
+	for _=1,15 do
+		bbv.Position = DmgPer
+		bullet.Position = DmgPer
+		wait(0.03)
+	end
+	bbv.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+	bullet.Position = playerss.Torso.CFrame.p + Vector3.new(0,5,0)
+	bullet.Attachment.Parent = orb1
+	CDDF[DmgPer] = false; StateMover = true
+end
+
+local Mouse = plr:GetMouse()
+Mouse.KeyDown:Connect(function(key)
+	if attack and key == "z" then
+		DamageFling(Mouse.Hit.p)
+	end
+
+end)
+
+local cancollide = true
+local atkfunction = {}
+atkfunction.__index = atkfunction
+function atkfunction:decal(decal,dur)
+	tween(decal,{Color3=BrickColor.Random().Color,Transparency=1},dur,Enum.EasingDirection.Out)
+end
+function atkfunction:selectionbox(box,dur)
+	tween(box,{Color3=BrickColor.Random().Color,SurfaceColor3=BrickColor.Random().Color,Transparency=1,SurfaceTransparency=1},dur,Enum.EasingDirection.Out)
+end
+function atkfunction:part(part)
+	if table.find(partexclusion,part) then return end
+	if part.Size.X > 20 or part.Size.Y > 30 or part.Size.Z > 30 then return end
+	table.insert(partexclusion,part)
+	if not part.Anchored then part:BreakJoints() end
+	part.Anchored = true
+	part.CanCollide = false
+	part.Material = materials[random(1,#materials)]
+	local dur = random(30,70)/100
+	tween(part,{CFrame=part.CFrame*cn(random(-5,5),random(-5,5),random(-5,5))*euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360))),Transparency=1,Color=BrickColor.Random().Color,Size=v3()},dur,Enum.EasingDirection.Out)
+	for i, v in pairs(part:GetChildren()) do
+		if v:IsA("Decal") or v:IsA("Texture") then
+			atkfunction:decal(v,dur)
+		elseif v:IsA("SelectionBox") or v:IsA("SelectionSphere") then
+			atkfunction:selectionbox(v,dur)
+		end
+	end
+end
+function atkfunction:hitbox(pos,range)
+	
+end
+function atkfunction:nhitbox(pos,range)
+	local hitbox = create("Part",{
+		Parent = cam,
+		Anchored = true,
+		CanCollide = false,
+		Material = Enum.Material.ForceField,
+		BrickColor = BrickColor.Random(),
+		Size = v3(range*2,range*2,range*2),
+		Shape = Enum.PartType.Ball,
+		Position = pos
+	})
+	table.insert(partexclusion,hitbox)
+	tween(hitbox,{Transparency=1},0.5,Enum.EasingDirection.In)
+	local yeah = run.RenderStepped:Connect(function()
+		hitbox.BrickColor = BrickColor.Random()
+	end)
+	debris(hitbox,0.5)
+	delay(0.5,function()
+		yeah:Disconnect()
+	end)
+	for i, v in pairs(workspace:GetDescendants()) do
+		if v:IsA("BasePart") then
+			if (v.Position-pos).Magnitude <= range then
+				atkfunction:part(v)
+			end
+		end
+	end
+end
+function atk1(mousepos)
+	for i = 1,3,0.3 do
+		laoffset = laoffset:Lerp(lac0*cn2(-0.137001038,0.184999943,-0.522003174)*euler(rad(45),0,rad(-30)),animspeed*0.75)
+		raoffset = raoffset:Lerp(rac0*cn2(0.102996826,-0.0399999619,0.32900238)*euler(rad(-30.7),rad(8.66),rad(3.12)),animspeed*0.75)
+		lloffset = lloffset:Lerp(llc0*cn2(0,0.64199996,-0.580001831-sin(sine/8)/5)*euler(rad(-12+sin(sine/8)*16),0,0),animspeed*0.75)
+		rloffset = rloffset:Lerp(rlc0*cn2(0,0,-sin(sine/8)/5)*euler(rad(sin(sine/8)*16),0,0),animspeed*0.75)
+		hoffset = hoffset:Lerp(hc0*cn2(0,-0.0149998665,-0.124000549)*euler(rad(-14),rad(30),0),animspeed*0.75)
+		toffset = toffset:Lerp(cn2(0,sin(sine/16)*1.5,0)*euler(rad(-cos(sine/16)*15),rad(-30),0),animspeed)
+		wait2()
+	end
+	delay(0.1,function()
+		local orb = create("Part",{
+			Parent = cam,
+			Anchored = true,
+			CanCollide = false,
+			Material = materials[random(1,#materials)],
+			BrickColor = BrickColor.Random(),
+			CFrame = rl.CFrame * cn2(0,-1.75,0) * euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))
+		})
+		
+		table.insert(partexclusion,orb)
+		local dur = (rl.Position-mousepos).Magnitude/500
+		tween(orb,{CFrame=cn(mousepos)*euler(rad(random(0,360)),rad(random(0,360)),rad(random(0,360)))},dur,Enum.EasingDirection.In,Enum.EasingStyle.Linear)
+		debris(orb,dur)
+		delay(dur,function()
+			atkfunction:hitbox(mousepos,5)
+		end)
+	end)
+	for i = 1, 3, 0.6 do
+		laoffset = laoffset:Lerp(lac0*cn2(-0.250999451,0.224999905,0.601997375)*euler(rad(-30.99),rad(35.33),rad(-46.86)),animspeed)
+		raoffset = raoffset:Lerp(rac0*cn2(-0.016998291,0.792000055,-0.972999573)*euler(rad(22.12),rad(147.65),rad(157.94)),animspeed)
+		lloffset = lloffset:Lerp(llc0*cn2(0,0.64199996,-0.580001831-sin(sine/8)/5)*euler(rad(-12+sin(sine/8)*16),0,0),animspeed)
+		rloffset = rloffset:Lerp(rlc0*cn2(0,0,-sin(sine/8)/5)*euler(rad(sin(sine/8)*16),0,0),animspeed)
+		hoffset = hoffset:Lerp(hc0*cn2(0,-0.0149998665,-0.124000549)*euler(rad(-14),rad(-30),0),animspeed)
+		toffset = toffset:Lerp(cn2(0,sin(sine/16)*1.5,0)*euler(rad(-cos(sine/16)*15),rad(30),0),animspeed)
+		wait2()
+	end
+	attack = false
+end
+if localplayer == plr then
+	cancollide = false
+	local function setupchr(chr)
+		truehum = chr:WaitForChild("Humanoid")
+		cam.CameraSubject = h
+	end
+	setupchr(localplayer.Character)
+	
+	mouse.KeyDown:Connect(function(key)
+		if key == "w" or key == "a" or key == "s" or key == "d" then
+			keys[key] = true
+		elseif key == "r" then
+			resetchr()
+		elseif key == "f" then
+			flying = not flying
+		elseif key == "z" then
+			if attack then return end
+			attack = true
+			atk1(mouse.Hit.p)
+			event:FireServer("keydown",{"z",mouse.Hit.p})
+		end
+	end)
+	mouse.KeyUp:Connect(function(key)
+		if key == "w" or key == "a" or key == "s" or key == "d" then
+			keys[key] = false
+		end
+	end)
+end
+OnClientEvent = function(what,mode,data)
+	if localplayer ~= plr then
+		if mode == "replicate" then
+			poscframe = data[1]
+			tween(r,{CFrame=poscframe},0.1,Enum.EasingDirection.Out)
+			moving = data[2]
+		elseif mode == "keydown" then
+			if data[1] == "z" then
+				atk1(data[2])
+			end
+		end
+	end
+	
+end
+function checkmeshpartintegrity(part,_size)
+	return (not part or part.Size ~= _size*size or part.Material ~= Enum.Material.SmoothPlastic or part.Reflectance ~= 0 or part.Transparency ~= 0 or part.Color ~= Color3.fromRGB(163,162,165) or not part.Anchored or part.CanCollide ~= cancollide or part.Archivable or part.Parent ~= cam or not part.Locked or part.CollisionGroupId ~= 0 or part.RenderFidelity ~= Enum.RenderFidelity.Precise or part.CollisionFidelity ~= Enum.CollisionFidelity.Default or part.TextureID ~= "" or part.DoubleSided or part.RootPriority ~= 0 or not part.CastShadow)
+end
+
+	if not h or h.Size ~= v3(2,1,1)*size or h.Material ~= Enum.Material.Plastic or h.Reflectance ~= 0 or h.Transparency ~= 0 or h.Color ~= Color3.fromRGB(163,162,165) or not h.Anchored or h.CanCollide ~= cancollide or h.Archivable or h.Parent ~= cam or not h.Locked or h.CollisionGroupId ~= 0 or h.Shape ~= Enum.PartType.Block or not h.CastShadow then
+		
+	h = playerss.Head
+		
+		if localplayer == plr then
+			cam.CameraSubject = h
+		end
+	end
+	if not table.find(partexclusion,h) then
+		table.insert(partexclusion,h)
+	end
+	if not r or r.Size ~= v3(2,2,1)*size or r.Material ~= Enum.Material.Plastic or r.Reflectance ~= 0 or r.Transparency ~= 0.5 or h.Color ~= Color3.fromRGB(163,162,165) or not h.Anchored or h.CanCollide ~= cancollide or h.Archivable or h.Parent ~= cam or not h.Locked or h.CollisionGroupId ~= 0 or h.Shape ~= Enum.PartType.Block or not h.CastShadow then
+		
+	r = playerss.HumanoidRootPart
+	end
+	if not table.find(partexclusion,r) then
+		table.insert(partexclusion,r)
+	end
+	if checkmeshpartintegrity(t,v3(2,2,1)) then
+		
+	t = playerss.Torso
+	end
+	if not table.find(partexclusion,t) then
+		table.insert(partexclusion,t)
+	end
+	if checkmeshpartintegrity(la,v3(1,2,1)) then
+		
+	la = playerss["Left Arm"]
+	end
+	if not table.find(partexclusion,la) then
+		table.insert(partexclusion,la)
+	end
+	if checkmeshpartintegrity(ra,v3(1,2,1)) then
+		
+	ra = playerss["Right Arm"]
+	end
+	if not table.find(partexclusion,ra) then
+		table.insert(partexclusion,ra)
+	end
+	if checkmeshpartintegrity(ll,v3(1,2,1)) then
+		
+	ll = playerss["Left Leg"]
+	end
+	if not table.find(partexclusion,ll) then
+		table.insert(partexclusion,ll)
+	end
+	if checkmeshpartintegrity(rl,v3(1,2,1)) then
+		
+	rl = playerss["Right Leg"]
+	end
+	if not table.find(partexclusion,rl) then
+		table.insert(partexclusion,rl)
+	end
+
+resetchr()
